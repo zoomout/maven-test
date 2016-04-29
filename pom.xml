@@ -12,5 +12,6 @@
     <modules>
         <module>prog</module>
         <module>my-webapp</module>
+        <module>patterns</module>
     </modules>
 </project>
