@@ -1,6 +1,10 @@
 package com.bogdan.project;
 
 
+import com.bogdan.project.strategy.Context;
+import com.bogdan.project.strategy.OperationAdd;
+import com.bogdan.project.strategy.OperationMultiply;
+import com.bogdan.project.strategy.OperationSubtract;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
