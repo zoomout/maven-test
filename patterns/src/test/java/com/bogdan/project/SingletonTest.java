@@ -11,6 +11,7 @@ import static org.testng.Assert.assertEquals;
 public class SingletonTest {
     @Test
     public void singletonTest() {
+        SingleObject.getInstance().clearMessage();
         assertEquals(SingleObject.getInstance().getMessage(), "default");
     }
 
@@ -25,7 +26,5 @@ public class SingletonTest {
 
         assertEquals(object1.getMessage(), "Msg2");
         assertEquals(object2.getMessage(), "Msg2");
-
-        object1.clearMessage();
     }
 }
