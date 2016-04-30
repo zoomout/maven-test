@@ -14,7 +14,6 @@ public class FactoryTest {
     @Test
     public void drawCircle() {
         assertEquals(shapeFactory.getShape("CIRCLE").draw(), "circle");
-
     }
 
     @Test
