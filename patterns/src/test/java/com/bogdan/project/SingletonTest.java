@@ -11,13 +11,21 @@ import static org.testng.Assert.assertEquals;
 public class SingletonTest {
     @Test
     public void singletonTest() {
-        assertEquals(SingleObject.getInstance().getMessage(), "Hi");
+        assertEquals(SingleObject.getInstance().getMessage(), "default");
     }
 
     @Test
     public void sameInstanceTest() {
         SingleObject object1 = SingleObject.getInstance();
+        object1.setMessage("Msg1");
+        assertEquals(object1.getMessage(), "Msg1");
+
         SingleObject object2 = SingleObject.getInstance();
-        assertEquals(object1, object2);
+        object1.setMessage("Msg2");
+
+        assertEquals(object1.getMessage(), "Msg2");
+        assertEquals(object2.getMessage(), "Msg2");
+
+        object1.clearMessage();
     }
 }
