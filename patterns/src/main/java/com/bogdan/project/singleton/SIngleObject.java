@@ -16,7 +16,11 @@ public class SingleObject {
     //Get the only object available
     public static synchronized SingleObject getInstance() {
         if (instance == null) {
-            instance = new SingleObject();
+            synchronized (SingleObject.class) {
+                if (instance == null) {
+                    instance = new SingleObject();
+                }
+            }
         }
         return instance;
     }

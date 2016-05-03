@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+    - name: aws cli install
+      unarchive: src="https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" dest=. copy=no
+
