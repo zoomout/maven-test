@@ -5,13 +5,13 @@ package com.bogdan.project.business.delegate;
  */
 public class Client {
 
-    BusinessDelegate businessService;
+    BusinessDelegate businessDelegate;
 
-    public Client(BusinessDelegate businessService){
-        this.businessService  = businessService;
+    public Client(BusinessDelegate businessDelegate){
+        this.businessDelegate = businessDelegate;
     }
 
     public String doTask(){
-        return businessService.doTask();
+        return businessDelegate.doTask();
     }
 }
