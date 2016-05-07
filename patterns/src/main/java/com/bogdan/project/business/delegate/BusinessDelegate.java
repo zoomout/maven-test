@@ -4,7 +4,7 @@ package com.bogdan.project.business.delegate;
  * Created by zoomout on 5/1/16.
  */
 public class BusinessDelegate {
-    private BusinessLookUp lookupService = new BusinessLookUp();
+    private BusinessFactory businessFactory = new BusinessFactory();
     private BusinessService businessService;
     private String serviceType;
 
@@ -13,7 +13,7 @@ public class BusinessDelegate {
     }
 
     public String doTask(){
-        businessService = lookupService.getBusinessService(serviceType);
+        businessService = businessFactory.getBusinessService(serviceType);
         return businessService.doProcessing();
     }
 }
