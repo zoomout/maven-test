@@ -19,5 +19,6 @@
     <modules>
         <module>my-webapp</module>
         <module>patterns</module>
+        <module>webtest</module>
     </modules>
 </project>
