@@ -20,5 +20,6 @@
         <module>my-webapp</module>
         <module>patterns</module>
         <module>webtest</module>
+        <module>testng-parallel</module>
     </modules>
 </project>
