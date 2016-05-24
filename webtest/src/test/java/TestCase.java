@@ -12,6 +12,8 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.testng.Assert.assertEquals;
 
@@ -28,10 +30,14 @@ public class TestCase {
     @BeforeClass
     public void beforeClass(String browser_api_name, String os_api_name, String screen_resolution) throws MalformedURLException {
 
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
+        String formattedDate = sdf.format(date);
+
         DesiredCapabilities caps = new DesiredCapabilities();
 
         caps.setCapability("name", "Selenium Test Example");
-        caps.setCapability("build", "1.0");
+        caps.setCapability("build", formattedDate);
         caps.setCapability("browser_api_name", browser_api_name);
         caps.setCapability("os_api_name", os_api_name);
         caps.setCapability("screen_resolution", screen_resolution);
