@@ -4,8 +4,9 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -17,13 +18,15 @@ import static org.testng.Assert.assertEquals;
 
 public class TestCase {
 
+    private static org.slf4j.Logger LOG = LoggerFactory.getLogger(TestCase.class.getSimpleName());
+
     public String testScore = "unset";
-    private RemoteWebDriver driver;
     boolean doMaximize = false;
+    private RemoteWebDriver driver;
 
     @Parameters(value = {"browser_api_name", "os_api_name", "screen_resolution"})
-    @BeforeMethod
-    public void beforeMethod(String browser_api_name, String os_api_name, String screen_resolution) throws MalformedURLException {
+    @BeforeClass
+    public void beforeClass(String browser_api_name, String os_api_name, String screen_resolution) throws MalformedURLException {
 
         DesiredCapabilities caps = new DesiredCapabilities();
 
@@ -35,7 +38,7 @@ public class TestCase {
         caps.setCapability("record_video", "true");
         caps.setCapability("record_network", "true");
 
-        if (!browser_api_name.contains("Mbl")){
+        if (!browser_api_name.contains("Mbl")) {
             doMaximize = true;
         }
 
@@ -48,15 +51,15 @@ public class TestCase {
     @Test
     public void testOne() throws Exception {
 
-        System.out.println(driver.getSessionId());
+        LOG.info(driver.getSessionId().toString());
         // we wrap the test in a try catch loop so we can log assert failures in our system
         try {
             // load the page url
-            System.out.println("Loading Url");
+            LOG.info("Loading Url");
             driver.get("http://crossbrowsertesting.github.io/selenium_example_page.html");
-            if (doMaximize){
+            if (doMaximize) {
                 // maximize the window - DESKTOPS ONLY
-                System.out.println("Maximizing window");
+                LOG.info("Maximizing window");
                 driver.manage().window().maximize();
             }
             // Check the page title (try changing to make the assertion fail!)
@@ -73,24 +76,22 @@ public class TestCase {
         } finally {
             // here we make an api call to actually send the score
             Helper.setScore(driver.getSessionId().toString(), testScore);
-            // and quit the driver
-            driver.quit();
         }
 
     }
 
-    @Test(dependsOnMethods = "testOne")
+    @Test
     public void testTwo() throws Exception {
 
-        System.out.println(driver.getSessionId());
+        LOG.info(driver.getSessionId().toString());
         // we wrap the test in a try catch loop so we can log assert failures in our system
         try {
             // load the page url
-            System.out.println("Loading Url");
+            LOG.info("Loading Url");
             driver.get("https://www.wikipedia.org");
-            if (doMaximize){
+            if (doMaximize) {
                 // maximize the window - DESKTOPS ONLY
-                System.out.println("Maximizing window");
+                LOG.info("Maximizing window");
                 driver.manage().window().maximize();
             }
             // Check the page title (try changing to make the assertion fail!)
@@ -107,9 +108,13 @@ public class TestCase {
         } finally {
             // here we make an api call to actually send the score
             Helper.setScore(driver.getSessionId().toString(), testScore);
-            // and quit the driver
-            driver.quit();
         }
 
+    }
+
+    @AfterClass
+    public void afterClass() {
+        // and quit the driver
+        driver.quit();
     }
 }
