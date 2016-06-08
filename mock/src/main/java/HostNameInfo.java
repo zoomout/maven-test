@@ -1,9 +1,9 @@
 import java.net.UnknownHostException;
 
 /**
- * Created by zoomout on 6/8/16.
+ * @author zoomout
  */
-public class HostName {
+public class HostNameInfo {
     public String getHostName() throws UnknownHostException {
             return java.net.InetAddress.getLocalHost().getHostName();
     }
