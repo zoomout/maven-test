@@ -21,5 +21,6 @@
         <module>patterns</module>
         <module>webtest</module>
         <module>testng-parallel</module>
+        <module>mock</module>
     </modules>
 </project>
