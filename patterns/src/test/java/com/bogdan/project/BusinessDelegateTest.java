@@ -9,6 +9,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by zoomout on 4/30/16.
  */
+@SuppressWarnings("ALL")
 public class BusinessDelegateTest {
 
     BusinessDelegate businessDelegate = new BusinessDelegate();

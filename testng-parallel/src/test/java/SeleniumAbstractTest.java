@@ -7,7 +7,7 @@ import org.testng.annotations.*;
  */
 public abstract class SeleniumAbstractTest {
 
-    private static org.slf4j.Logger LOG = LoggerFactory.getLogger(SeleniumAbstractTest.class.getSimpleName());
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SeleniumAbstractTest.class.getSimpleName());
 
     @BeforeSuite
     public void beforeSuite() {

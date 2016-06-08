@@ -19,10 +19,10 @@ import static org.testng.Assert.assertEquals;
 
 public class TestCase {
 
-    private static org.slf4j.Logger LOG = LoggerFactory.getLogger(TestCase.class.getSimpleName());
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TestCase.class.getSimpleName());
 
-    public String testScore = "unset";
-    boolean doMaximize = false;
+    private String testScore = "unset";
+    private boolean doMaximize = false;
     private RemoteWebDriver driver;
 
     @Parameters(value = {"browser_api_name", "os_api_name", "screen_resolution"})

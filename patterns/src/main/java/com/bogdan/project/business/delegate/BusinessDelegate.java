@@ -4,7 +4,7 @@ package com.bogdan.project.business.delegate;
  * Created by zoomout on 5/1/16.
  */
 public class BusinessDelegate {
-    private BusinessFactory businessFactory = new BusinessFactory();
+    private final BusinessFactory businessFactory = new BusinessFactory();
     private BusinessService businessService;
     private String serviceType;
 

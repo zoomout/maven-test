@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
  */
 @Test
 public class MyTestClass1 extends SeleniumAbstractTest {
-    private static org.slf4j.Logger LOG = LoggerFactory.getLogger(SeleniumAbstractTest.class.getSimpleName());
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SeleniumAbstractTest.class.getSimpleName());
 
 
     public void myTestMethod1_1() {

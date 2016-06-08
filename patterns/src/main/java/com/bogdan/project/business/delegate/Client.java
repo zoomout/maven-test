@@ -5,7 +5,7 @@ package com.bogdan.project.business.delegate;
  */
 public class Client {
 
-    BusinessDelegate businessDelegate;
+    private final BusinessDelegate businessDelegate;
 
     public Client(BusinessDelegate businessDelegate){
         this.businessDelegate = businessDelegate;

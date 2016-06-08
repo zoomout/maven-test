@@ -9,7 +9,7 @@ import static org.testng.Assert.assertEquals;
  * Created by zoomout on 4/30/16.
  */
 public class FactoryTest {
-    ShapeFactory shapeFactory = new ShapeFactory();
+    private final ShapeFactory shapeFactory = new ShapeFactory();
 
     @Test
     public void drawCircle() {

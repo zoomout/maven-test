@@ -4,7 +4,7 @@ package com.bogdan.project.strategy;
  * Created by zoomout on 4/29/16.
  */
 public class Context {
-    private Strategy strategy;
+    private final Strategy strategy;
 
     public Context(Strategy strategy){
         this.strategy = strategy;

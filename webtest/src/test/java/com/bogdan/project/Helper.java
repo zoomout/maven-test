@@ -7,10 +7,10 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 /**
  * Created by zoomout on 5/23/16.
  */
-public class Helper {
+class Helper {
 
-    public static String username = ""; // Your username
-    public static String authkey = "";  // Your authkey
+    public static final String username = ""; // Your username
+    public static final String authkey = "";  // Your authkey
 
     public static JsonNode setScore(String seleniumTestId, String score) throws UnirestException {
         // Mark a Selenium test as Pass/Fail
@@ -40,7 +40,7 @@ public class Helper {
 
     public static JsonNode setDescription(String seleniumTestId, String snapshotHash, String description) throws UnirestException {
         /*
-         * sets the description for the given seleniemTestId and snapshotHash
+         * sets the description for the given seleniumTestId and snapshotHash
          */
         HttpResponse<JsonNode> response = Unirest.put("http://crossbrowsertesting.com/api/v3/selenium/{seleniumTestId}/snapshots/{snapshotHash}")
                 .basicAuth(username, authkey)

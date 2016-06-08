@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
  * Created by zoomout on 6/7/16.
  */
 public class DebuggerDetectionTest {
-    WebDriver driver;
+    private WebDriver driver;
 
     @Test
     public void testDebugger() throws InterruptedException {
@@ -19,7 +19,6 @@ public class DebuggerDetectionTest {
         driver = new ChromeDriver();
         driver.get("https://jsfiddle.net/evnrorea/embedded/result/");
         WebElement iframe = driver.findElement(By.xpath("//iframe"));
-        WebElement firstElement = driver.findElement(By.className("normalRes"));
         driver.switchTo().frame(iframe);
         WebElement element = driver.findElement(By.id("devtool-status"));
         Thread.sleep(200);

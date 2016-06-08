@@ -72,9 +72,7 @@ public class MultiThreading {
 
         System.out.println("Started\n");
         long time = System.currentTimeMillis();
-        for (int i = 0; i < hostList.length; i++) {
-
-            String url = hostList[i];
+        for (String url : hostList) {
             Runnable worker = new MyRunnable(url);
             executor.execute(worker);
         }

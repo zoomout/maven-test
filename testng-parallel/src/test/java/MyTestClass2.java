@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
  * Created by zoomout on 5/24/16.
  */
 public class MyTestClass2 extends SeleniumAbstractTest {
-    private static org.slf4j.Logger LOG = LoggerFactory.getLogger(SeleniumAbstractTest.class.getSimpleName());
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SeleniumAbstractTest.class.getSimpleName());
 
     @Test
     public void myTestMethod2_1() {
