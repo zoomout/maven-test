@@ -8,12 +8,12 @@
 
     <parent>
         <artifactId>projects</artifactId>
-        <groupId>com.mycompany.app</groupId>
+        <groupId>com.bogdan.web</groupId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.mycompany.app</groupId>
+    <groupId>com.bogdan.web</groupId>
     <artifactId>parent</artifactId>
 
     <properties>
