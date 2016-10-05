@@ -9,13 +9,53 @@
     <artifactId>projects</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <modules>
-        <module>functional</module>
-        <module>mock</module>
-        <module>my-webapp</module>
-        <module>parent</module>
-        <module>patterns</module>
-        <module>testng-parallel</module>
-    </modules>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>functional</module>
+                <module>mock</module>
+                <module>my-webapp</module>
+                <module>patterns</module>
+                <module>testng-parallel</module>
+                <module>parent</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>functional</id>
+            <modules>
+                <module>functional</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>mock</id>
+            <modules>
+                <module>mock</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>my-webapp</id>
+            <modules>
+                <module>my-webapp</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>patterns</id>
+            <modules>
+                <module>patterns</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>testng-parallel</id>
+            <modules>
+                <module>testng-parallel</module>
+            </modules>
+        </profile>
+    </profiles>
 
 </project>
