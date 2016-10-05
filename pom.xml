@@ -5,25 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mycompany.app</groupId>
-    <artifactId>maven-test</artifactId>
+    <artifactId>projects</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.9.8</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+
     <modules>
         <module>my-webapp</module>
         <module>patterns</module>
-        <module>webtest</module>
         <module>testng-parallel</module>
         <module>mock</module>
         <module>functional</module>
+        <module>parent</module>
     </modules>
+
     <build>
         <plugins>
             <plugin>
