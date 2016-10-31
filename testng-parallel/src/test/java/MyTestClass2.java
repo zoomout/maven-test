@@ -4,8 +4,8 @@ import org.testng.annotations.Test;
 /**
  * Created by zoomout on 5/24/16.
  */
-public class MyTestClass2 extends SeleniumAbstractTest {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SeleniumAbstractTest.class.getSimpleName());
+public class MyTestClass2 extends AbstractTest {
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(AbstractTest.class.getSimpleName());
 
     @Test
     public void myTestMethod2_1() {
@@ -16,6 +16,18 @@ public class MyTestClass2 extends SeleniumAbstractTest {
     @Test
     public void myTestMethod2_2() {
         LOG.info("myTestMethod2_2");
+        Sleep.sleep(500);
+    }
+
+    @Test
+    public void myTestMethod2_3() {
+        LOG.info("myTestMethod2_3");
+        Sleep.sleep(500);
+    }
+
+    @Test
+    public void myTestMethod2_4() {
+        LOG.info("myTestMethod2_4");
         Sleep.sleep(500);
     }
 }

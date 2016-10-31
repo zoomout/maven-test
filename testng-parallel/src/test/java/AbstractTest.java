@@ -5,9 +5,9 @@ import org.testng.annotations.*;
 /**
  * Created by zoomout on 5/24/16.
  */
-public abstract class SeleniumAbstractTest {
+public abstract class AbstractTest {
 
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SeleniumAbstractTest.class.getSimpleName());
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(AbstractTest.class.getSimpleName());
 
     @BeforeSuite
     public void beforeSuite() {
