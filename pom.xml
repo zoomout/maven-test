@@ -24,6 +24,7 @@
                 <module>patterns</module>
                 <module>testng-parallel</module>
                 <module>parent</module>
+                <module>multithreading</module>
             </modules>
         </profile>
 
