@@ -1,3 +1,8 @@
+package generics;
+
+import annotations.MyAnnotation;
+import generics.AnotherClass;
+import generics.GenericContainer;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,6 +14,9 @@ import java.util.List;
  */
 public class GenericContainerTest {
 
+    @MyAnnotation
+    String hi;
+
     @Test
     public void testGenerics() {
         GenericContainer<AnotherClass> con1 = new GenericContainer<>(5);
@@ -16,13 +24,13 @@ public class GenericContainerTest {
         con1.add(new AnotherClass());
         for (int i = 0; i < con1.size(); i++) {
             if (!(con1.get(i) instanceof AnotherClass)) {
-                Assert.fail("Not a AnotherClass");
+                Assert.fail("Not a generics.AnotherClass");
             }
         }
     }
 
     @Test
-    public void testGenericMethod(){
+    public void testGenericMethod() {
         GenericContainer<AnotherClass> con = new GenericContainer<>(5);
 
         List<String> list1 = new ArrayList<>();
