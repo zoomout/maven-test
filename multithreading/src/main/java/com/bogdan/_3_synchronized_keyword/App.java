@@ -1,14 +1,17 @@
-package com.bogdan.threadsync;
+package com.bogdan._3_synchronized_keyword;
 
 /**
  * Created by zoomout on 11/20/16.
+ *
+ * Advanced Java: Multi-threading Part 3 -- The Synchronized Keyword
+ * https://www.youtube.com/watch?v=lotAYC3hLVo
  */
-public class App2 {
+public class App {
 
     private int count; // AtomicInteger can be used for synchronisation as well
 
     public static void main(String[] args) {
-        App2 app = new App2();
+        App app = new App();
         app.doWork();
     }
 

@@ -1,4 +1,4 @@
-package com.bogdan.threadsync;
+package com.bogdan._2_threadsync_volatile;
 
 import com.bogdan.common.Util;
 
@@ -7,7 +7,8 @@ import java.util.Scanner;
 /**
  * Created by zoomout on 11/20/16.
  * <p>
- * Thread synchronisation
+ * Advanced Java: Multi-threading Part 2 -- Basic Thread
+ * https://www.youtube.com/watch?v=_aNO6x8HXZ0
  */
 public class App {
     public static void main(String[] args) {

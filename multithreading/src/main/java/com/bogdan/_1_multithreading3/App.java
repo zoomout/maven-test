@@ -1,4 +1,4 @@
-package com.bogdan.multithreading3;
+package com.bogdan._1_multithreading3;
 
 import com.bogdan.common.Util;
 
