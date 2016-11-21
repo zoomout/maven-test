@@ -18,16 +18,4 @@ public class MyTestClass2 extends AbstractTest {
         LOG.info("myTestMethod2_2");
         Sleep.sleep(500);
     }
-
-    @Test
-    public void myTestMethod2_3() {
-        LOG.info("myTestMethod2_3");
-        Sleep.sleep(500);
-    }
-
-    @Test
-    public void myTestMethod2_4() {
-        LOG.info("myTestMethod2_4");
-        Sleep.sleep(500);
-    }
 }
