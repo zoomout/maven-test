@@ -1,7 +1,5 @@
 package com.bogdan.common;
 
-import com.bogdan._2_threadsync_volatile.Processor;
-
 import java.util.Scanner;
 import java.util.concurrent.locks.Condition;
 
@@ -31,8 +29,6 @@ public class Util {
             if ("s".equals(command)) {
                 if (o instanceof Condition) {
                     ((Condition) o).signal();
-                } else if (o instanceof Processor) {
-                    ((Processor) o).shutdown();
                 } else {
                     o.notify();
                 }

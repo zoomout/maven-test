@@ -2,6 +2,8 @@ package com.bogdan._2_threadsync_volatile;
 
 import com.bogdan.common.Util;
 
+import java.util.Scanner;
+
 /**
  * Created by zoomout on 11/20/16.
  * <p>
@@ -14,10 +16,28 @@ public class App {
         proc1.start();
 
         System.out.println("Enter 's' to stop...");
-        Util.waitForS(proc1);
-        Util.sleep(500);
-        System.out.println("'App' is stopped");
+        waitForS(proc1);
 
+
+        Util.sleep(500);
+        System.out.println("'App1' is stopped");
+
+    }
+
+    public static void waitForS(Processor p) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Waiting for 's' key");
+        String command;
+        while (true) {
+            command = scanner.nextLine();
+            System.out.println("You entered: " + command);
+            if ("s".equals(command)) {
+                p.shutdown();
+                break;
+            } else {
+                Util.sleep(50);
+            }
+        }
     }
 }
 
