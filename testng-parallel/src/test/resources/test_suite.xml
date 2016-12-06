@@ -1,14 +1,25 @@
 <suite name="Suite" parallel="tests" thread-count="100">
     <test name="Test1" parallel="methods" thread-count="100">
         <classes>
-            <class name="MyTestClass2"/>
+            <class name="com.bogdan.MyTestClass2"/>
         </classes>
     </test>
 
     <test name="Test2" parallel="methods" thread-count="100">
         <classes>
-            <class name="MyTestClass1"/>
-            <class name="MyTestClass2"/>
+            <class name="com.bogdan.MyTestClass1"/>
+            <class name="com.bogdan.MyTestClass2"/>
+            <class name="com.bogdan.MyTestClass3"/>
         </classes>
+    </test>
+    <test name="Test3" parallel="methods" thread-count="100">
+        <packages>
+            <package name="com.bogdan.*"/>
+        </packages>
+    </test>
+    <test name="Test4" parallel="methods" thread-count="100">
+        <packages>
+            <package name="com.bogdan.sequential"/>
+        </packages>
     </test>
 </suite>

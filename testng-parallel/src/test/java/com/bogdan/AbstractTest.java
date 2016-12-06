@@ -1,3 +1,5 @@
+package com.bogdan;
+
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -8,6 +10,8 @@ import org.testng.annotations.*;
 public abstract class AbstractTest {
 
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(AbstractTest.class.getSimpleName());
+
+    public static final int TIMEOUT = 1000;
 
     @BeforeSuite
     public void beforeSuite() {

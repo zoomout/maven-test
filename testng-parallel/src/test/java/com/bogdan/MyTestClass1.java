@@ -1,3 +1,5 @@
+package com.bogdan;
+
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,18 +17,18 @@ public class MyTestClass1 extends AbstractTest {
     @BeforeMethod
     public void beforeMethod() {
         Random random = new Random();
-        num = random.nextInt(1000);
+        num = random.nextInt(TIMEOUT);
     }
 
     @Test
     public void myTestMethod1_1() {
         LOG.info("myTestMethod1_1; sometimes_not_random_num=" + num);
-        Sleep.sleep(500);
+        Sleep.sleep(TIMEOUT);
     }
 
     @Test
     public void myTestMethod1_2() {
         LOG.info("myTestMethod1_2; sometimes_not_random_num=" + num);
-        Sleep.sleep(500);
+        Sleep.sleep(TIMEOUT);
     }
 }
