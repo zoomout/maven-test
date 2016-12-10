@@ -25,6 +25,7 @@
                 <module>testng-parallel</module>
                 <module>parent</module>
                 <module>multithreading</module>
+                <module>rest</module>
             </modules>
         </profile>
 
