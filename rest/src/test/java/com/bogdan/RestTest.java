@@ -1,8 +1,19 @@
 package com.bogdan;
 
+import com.bogdan.domain.httpbinbody.Body;
+import com.bogdan.domain.BodyWithOptional;
+import com.bogdan.domain.httpbinbody.HttpBinBody;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
+import com.jayway.restassured.response.Cookie;
+import com.jayway.restassured.response.Cookie.Builder;
+import com.jayway.restassured.response.Cookies;
+import com.jayway.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +28,64 @@ import static org.hamcrest.CoreMatchers.nullValue;
  * Created by zoomout on 12/10/16.
  */
 public class RestTest {
+
+    @Test
+    public void deserializationTest() throws IOException {
+        Body requestBody = new Body();
+        requestBody.setName("Fred");
+        requestBody.setAge(25);
+
+        Response response = given().
+            contentType(JSON).
+            body(requestBody, ObjectMapperType.JACKSON_2).
+            when().
+            put("http://httpbin.org/put");
+
+        response.then().log().all().statusCode(200);
+
+        String responseBodyJson = response.getBody().prettyPrint();
+
+        HttpBinBody responseBody = new ObjectMapper().readValue(responseBodyJson, new TypeReference<HttpBinBody<Body>>() {});
+
+        Assert.assertEquals(responseBody.getRequestBody(), requestBody);
+    }
+
+    @Test
+    public void cookiesSet() {
+
+        Cookie cookie = new Builder("my", "cookie").build();
+        Cookies cookies = new Cookies(cookie);
+        given().
+            cookies(cookies).
+            when().log().all().
+            get("http://httpbin.org/cookies/set").
+            then().log().all().
+            statusCode(200).
+            body("cookies.my", equalTo("cookie"));
+    }
+
+    @Test
+    public void urlRedirects() {
+        given().
+            param("hi").
+            when().
+            get("http://httpbin.org/get").
+            then().log().all().
+            statusCode(200).
+            body("args.hi", equalTo(""));
+    }
+
+
+    @Test
+    public void urlParameterWithNoValue() {
+        given().
+            param("hi").
+            when().
+            get("http://httpbin.org/get").
+            then().log().all().
+            statusCode(200).
+            body("args.hi", equalTo(""));
+    }
 
     @Test
     public void restBodyWithOptionalNotSetJacksonTest() {

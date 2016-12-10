@@ -68,6 +68,11 @@
                 <artifactId>jackson-datatype-jdk8</artifactId>
                 <version>${jackson-datatype-jdk8.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson-annotations.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -84,6 +89,7 @@
         <jackson-databind.version>2.8.5</jackson-databind.version>
         <json-schema-validator.version>3.0.1</json-schema-validator.version>
         <jackson-datatype-jdk8.version>2.8.5</jackson-datatype-jdk8.version>
+        <jackson-annotations.version>2.8.5</jackson-annotations.version>
     </properties>
 
     <build>

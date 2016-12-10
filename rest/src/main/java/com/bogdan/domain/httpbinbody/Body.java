@@ -1,4 +1,4 @@
-package com.bogdan;
+package com.bogdan.domain.httpbinbody;
 
 /**
  * Created by zoomout on 12/10/16.
@@ -23,5 +23,15 @@ public class Body {
 
     public Integer getAge() {
         return age;
+    }
+
+    @Override
+    public String toString() {
+        return "Body [name=" + name + ", age= " + age + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Body) && obj.toString().equals(this.toString());
     }
 }

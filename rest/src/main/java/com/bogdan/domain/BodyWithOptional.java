@@ -1,4 +1,4 @@
-package com.bogdan;
+package com.bogdan.domain;
 
 import java.util.Optional;
 
