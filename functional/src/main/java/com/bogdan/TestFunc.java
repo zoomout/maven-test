@@ -1,12 +1,12 @@
+package com.bogdan;
+
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.IntToDoubleFunction;
 import java.util.function.UnaryOperator;
-import java.util.stream.Stream;
 
 public class TestFunc {
     private static final int NUM = 1;

@@ -1,3 +1,5 @@
+package com.bogdan;
+
 import java.util.function.Function;
 
 public class DoStuffFunc {
