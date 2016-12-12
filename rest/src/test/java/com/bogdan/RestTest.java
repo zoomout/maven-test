@@ -5,12 +5,14 @@ import com.bogdan.domain.BodyWithOptional;
 import com.bogdan.domain.httpbinbody.HttpBinBody;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.jayway.restassured.response.Cookie;
 import com.jayway.restassured.response.Cookie.Builder;
 import com.jayway.restassured.response.Cookies;
 import com.jayway.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -29,6 +31,11 @@ import static org.hamcrest.CoreMatchers.nullValue;
  */
 public class RestTest {
 
+    @BeforeClass
+    public void setup(){
+        RestAssured.baseURI = "http://httpbin.org";
+    }
+
     @Test
     public void deserializationTest() throws IOException {
         Body requestBody = new Body();
@@ -39,7 +46,7 @@ public class RestTest {
             contentType(JSON).
             body(requestBody).
             when().
-            put("http://httpbin.org/put");
+            put("/put");
 
         response.then().log().all().statusCode(200);
 
@@ -60,7 +67,7 @@ public class RestTest {
         given().
             cookies(cookies).
             when().log().all().
-            get("http://httpbin.org/cookies/set").
+            get("/cookies/set").
             then().log().all().
             statusCode(200).
             body("cookies.my", equalTo("cookie"));
@@ -71,7 +78,7 @@ public class RestTest {
         given().
             param("hi").
             when().
-            get("http://httpbin.org/get").
+            get("/get").
             then().log().all().
             statusCode(200).
             body("args.hi", equalTo(""));
@@ -83,7 +90,7 @@ public class RestTest {
         given().
             param("hi").
             when().
-            get("http://httpbin.org/get").
+            get("/get").
             then().log().all().
             statusCode(200).
             body("args.hi", equalTo(""));
@@ -98,7 +105,7 @@ public class RestTest {
             contentType(JSON).
             body(body).
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body("json.name", equalTo("Tim")).
@@ -116,7 +123,7 @@ public class RestTest {
             contentType(JSON).
             body(body).
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body("json.name", equalTo("Tim")).
@@ -132,7 +139,7 @@ public class RestTest {
             contentType(JSON).
             body(body).
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body(matchesJsonSchemaInClasspath("json_schema_optional.json"));
@@ -148,7 +155,7 @@ public class RestTest {
             contentType(JSON).
             body(body).
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body(matchesJsonSchemaInClasspath("json_schema.json"));
@@ -164,7 +171,7 @@ public class RestTest {
             contentType(JSON).
             body(body, ObjectMapperType.JACKSON_2). //just an example, JACKSON_2 is used by default
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body("json.name", equalTo("Mark")).
@@ -180,7 +187,7 @@ public class RestTest {
             contentType(JSON).
             body(body, ObjectMapperType.GSON).
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body("json.name", equalTo("Tim")).
@@ -197,7 +204,7 @@ public class RestTest {
             contentType(JSON).
             body(body, ObjectMapperType.GSON).
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body("json.name", equalTo("Tim")).
@@ -213,7 +220,7 @@ public class RestTest {
             contentType(JSON).
             body(body, ObjectMapperType.GSON).
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body("json.name", equalTo("Mark"));
@@ -229,7 +236,7 @@ public class RestTest {
             contentType(JSON).
             body(jsonAsMap).
             when().
-            post("http://httpbin.org/post").
+            post("/post").
             then().log().all().
             statusCode(200).
             body("json.firstName", equalTo("John")).
