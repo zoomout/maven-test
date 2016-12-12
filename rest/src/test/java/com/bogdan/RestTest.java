@@ -1,6 +1,6 @@
 package com.bogdan;
 
-import com.bogdan.domain.httpbinbody.Body;
+import com.bogdan.domain.Body;
 import com.bogdan.domain.BodyWithOptional;
 import com.bogdan.domain.httpbinbody.HttpBinBody;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -37,7 +37,7 @@ public class RestTest {
 
         Response response = given().
             contentType(JSON).
-            body(requestBody, ObjectMapperType.JACKSON_2).
+            body(requestBody).
             when().
             put("http://httpbin.org/put");
 
@@ -45,7 +45,9 @@ public class RestTest {
 
         String responseBodyJson = response.getBody().prettyPrint();
 
-        HttpBinBody responseBody = new ObjectMapper().readValue(responseBodyJson, new TypeReference<HttpBinBody<Body>>() {});
+        HttpBinBody responseBody =
+            new ObjectMapper().readValue(responseBodyJson, new TypeReference<HttpBinBody<Body>>() {
+            });
 
         Assert.assertEquals(responseBody.getRequestBody(), requestBody);
     }
@@ -94,7 +96,7 @@ public class RestTest {
 
         given().
             contentType(JSON).
-            body(body, ObjectMapperType.JACKSON_2).
+            body(body).
             when().
             post("http://httpbin.org/post").
             then().log().all().
@@ -112,7 +114,7 @@ public class RestTest {
 
         given().
             contentType(JSON).
-            body(body, ObjectMapperType.JACKSON_2).
+            body(body).
             when().
             post("http://httpbin.org/post").
             then().log().all().
@@ -128,7 +130,7 @@ public class RestTest {
 
         given().
             contentType(JSON).
-            body(body, ObjectMapperType.JACKSON_2).
+            body(body).
             when().
             post("http://httpbin.org/post").
             then().log().all().
@@ -144,7 +146,7 @@ public class RestTest {
 
         given().
             contentType(JSON).
-            body(body, ObjectMapperType.JACKSON_2).
+            body(body).
             when().
             post("http://httpbin.org/post").
             then().log().all().
@@ -160,7 +162,7 @@ public class RestTest {
 
         given().
             contentType(JSON).
-            body(body, ObjectMapperType.JACKSON_2).
+            body(body, ObjectMapperType.JACKSON_2). //just an example, JACKSON_2 is used by default
             when().
             post("http://httpbin.org/post").
             then().log().all().

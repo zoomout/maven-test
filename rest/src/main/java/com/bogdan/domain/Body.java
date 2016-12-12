@@ -1,4 +1,4 @@
-package com.bogdan.domain.httpbinbody;
+package com.bogdan.domain;
 
 /**
  * Created by zoomout on 12/10/16.
