@@ -37,6 +37,17 @@ public class RestTest {
     }
 
     @Test
+    public void basicAuthTest() {
+        Response response = given().
+            auth().basic("u", "p").
+            when().
+            get("/basic-auth/u/p");
+
+        response.then().
+            statusCode(200);
+    }
+
+    @Test
     public void deserializationTest() throws IOException {
         Body requestBody = new Body();
         requestBody.setName("Fred");
