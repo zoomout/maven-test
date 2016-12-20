@@ -11,6 +11,14 @@ public class BodyWithOptional {
 
     private Optional<Integer> age;
 
+    public BodyWithOptional() {
+    }
+
+    public BodyWithOptional(String name, Optional<Integer> age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

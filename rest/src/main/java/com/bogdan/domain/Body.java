@@ -9,6 +9,15 @@ public class Body {
 
     private Integer age;
 
+    public Body(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public Body() {
+
+    }
+
     public void setName(String name) {
         this.name = name;
     }
