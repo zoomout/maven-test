@@ -45,6 +45,19 @@ public class RestTest {
     }
 
     @Test
+    public void fluentSettersAndAssertJWithNotSetField() throws IOException {
+
+        ExternalDTO requestBody = generateExternalDTO();
+
+        ExternalDTO responseBody = sendRequestAndExtractExternalDTOFromResponse(requestBody);
+
+        responseBody.setInternalDTO(null);
+
+        assertThat(responseBody).isEqualToComparingFieldByFieldRecursively(requestBody.setInternalDTO(null));
+
+    }
+
+    @Test
     public void fluentSettersAndAssertJ() throws IOException {
 
         ExternalDTO requestBody = generateExternalDTO();
@@ -52,6 +65,7 @@ public class RestTest {
         ExternalDTO responseBody = sendRequestAndExtractExternalDTOFromResponse(requestBody);
 
         responseBody.setName("Another Name");
+        responseBody.setInternalDTO(null);
         assertThat(responseBody).isEqualToIgnoringGivenFields(requestBody, "name");
 
     }
