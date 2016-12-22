@@ -2,6 +2,7 @@ package com.bogdan;
 
 import com.bogdan.domain.*;
 import com.bogdan.domain.httpbinbody.HttpBinBody;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonElement;
@@ -14,6 +15,7 @@ import com.jayway.restassured.response.Cookies;
 import com.jayway.restassured.response.Response;
 import org.json.JSONException;
 import org.skyscreamer.jsonassert.JSONAssert;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -44,6 +46,36 @@ public class RestTest {
         RestAssured.baseURI = "http://httpbin.org";
     }
 
+
+    @Test
+    public void anotherSerialize() {
+        AnotherObject anotherObject1 = new AnotherObject().
+          setName("NAME").
+          setOk(true);
+
+        AnotherObject anotherObject2 = new AnotherObject().
+          setName("NAME").
+          setAge(20).
+          setOk(true);
+
+        Assert.assertNotEquals(anotherObject1, anotherObject2);
+
+        String json1 = serialize(anotherObject1);
+        String json2 = serialize(anotherObject2);
+        System.out.println("json1: " + json1);
+        System.out.println("json2: " + json2);
+    }
+
+    private String serialize(Object o) {
+        String json = null;
+        try {
+            json = jacksonObjectMapper.writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
     @Test
     public void fluentSettersAndAssertJWithNotSetField() throws IOException {
 
@@ -53,7 +85,8 @@ public class RestTest {
 
         responseBody.setInternalDTO(null);
 
-        assertThat(responseBody).isEqualToComparingFieldByFieldRecursively(requestBody.setInternalDTO(null));
+        assertThat(responseBody)
+          .isEqualToComparingFieldByFieldRecursively(requestBody.setInternalDTO(null));
 
     }
 
@@ -144,7 +177,7 @@ public class RestTest {
         assertSameJson(requestBodyJson, requestBodyInResponseBodyJson, false);
     }
 
-    public static void assertSameJson(String expected, String actual, boolean strictMode){
+    public static void assertSameJson(String expected, String actual, boolean strictMode) {
         try {
             JSONAssert.assertEquals(expected, actual, strictMode);
         } catch (JSONException e) {
