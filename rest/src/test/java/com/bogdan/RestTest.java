@@ -1,8 +1,6 @@
 package com.bogdan;
 
-import com.bogdan.domain.Body;
-import com.bogdan.domain.BodyWithOptional;
-import com.bogdan.domain.Nested;
+import com.bogdan.domain.*;
 import com.bogdan.domain.httpbinbody.HttpBinBody;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,6 +20,7 @@ import org.testng.annotations.Test;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +28,7 @@ import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static java.util.Optional.of;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.testng.Assert.assertEquals;
@@ -37,6 +37,7 @@ import static org.testng.Assert.assertEquals;
  * Created by zoomout on 12/10/16.
  */
 public class RestTest {
+    ObjectMapper jacksonObjectMapper = new ObjectMapper();
 
     @BeforeClass
     public void setup() {
@@ -44,12 +45,69 @@ public class RestTest {
     }
 
     @Test
+    public void fluentSettersAndAssertJ() throws IOException {
+
+        ExternalDTO requestBody = generateExternalDTO();
+
+        ExternalDTO responseBody = sendRequestAndExtractExternalDTOFromResponse(requestBody);
+
+        responseBody.setName("Another Name");
+        assertThat(responseBody).isEqualToIgnoringGivenFields(requestBody, "name");
+
+    }
+
+    private ExternalDTO sendRequestAndExtractExternalDTOFromResponse(ExternalDTO externalDTO)
+      throws IOException {
+
+        String requestBodyJson = jacksonObjectMapper.writeValueAsString(externalDTO);
+
+        Response response = given().
+          contentType(JSON).
+          body(requestBodyJson).
+          when().
+          put("/put");
+
+        response.then().log().all().statusCode(200);
+
+        String responseBodyJson = response.getBody().prettyPrint();
+
+        HttpBinBody<ExternalDTO> responseBody = jacksonObjectMapper
+          .readValue(responseBodyJson, new TypeReference<HttpBinBody<ExternalDTO>>() {});
+
+        return responseBody.getRequestBody();
+    }
+
+    private ExternalDTO generateExternalDTO() {
+        ArrayList<InternalDTO> internalDTOsList = new ArrayList<>();
+        internalDTOsList.add(new InternalDTO().
+          setIntName("intNameInList1"));
+        internalDTOsList.add(new InternalDTO().
+          setIntName("intNameInList2"));
+
+        HashMap<String, InternalDTO> internalDTOsMap = new HashMap<>();
+
+        internalDTOsMap.put("mapsKey1", new InternalDTO().
+          setIntName("intNameInMap1"));
+        internalDTOsMap.put("mapsKey2", new InternalDTO().
+          setIntName("intNameInMap2"));
+
+        return new ExternalDTO().
+          setName("NAME").
+          setInternalDTO(new InternalDTO().
+            setIntName("someField")).
+          setAge(15).
+          setInternalDTOsList(internalDTOsList).
+          setInternalDTOsMap(internalDTOsMap);
+    }
+
+
+    @Test
     public void jacksonOnly() throws IOException {
-        ObjectMapper jacksonObjectMapper = new ObjectMapper();
         Nested nested = new Nested("ID", new Body("NAME", 23));
 
-        String requestBodyJson = jacksonObjectMapper.writeValueAsString(nested);
+        ObjectMapper jacksonObjectMapper = new ObjectMapper();
 
+        String requestBodyJson = jacksonObjectMapper.writeValueAsString(nested);
 
         Response response = given().
           contentType(JSON).
@@ -72,7 +130,7 @@ public class RestTest {
         assertSameJson(requestBodyJson, requestBodyInResponseBodyJson, false);
     }
 
-    private void assertSameJson(String expected, String actual, boolean strictMode){
+    public static void assertSameJson(String expected, String actual, boolean strictMode){
         try {
             JSONAssert.assertEquals(expected, actual, strictMode);
         } catch (JSONException e) {
