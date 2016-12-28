@@ -1,6 +1,6 @@
 package annotations;
 
-import junit.framework.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
@@ -15,7 +15,7 @@ public class AnnotationTest {
         Method[] methods = ClassWithAnnotations.class.getMethods();
         for (int i = 0; i < methods.length; i++) {
             if (methods[i].getName().equals("annotatedPublicMethod")) {
-                Assert.assertTrue("Annotation should be present", methods[i].isAnnotationPresent(MyAnnotation.class));
+                Assert.assertTrue(methods[i].isAnnotationPresent(MyAnnotation.class));
                 Assert.assertEquals(21, methods[i].getAnnotation(MyAnnotation.class).id());
             }
         }
