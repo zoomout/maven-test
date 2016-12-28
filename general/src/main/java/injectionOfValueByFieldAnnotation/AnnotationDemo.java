@@ -5,7 +5,7 @@ package injectionOfValueByFieldAnnotation;
  */
 public class AnnotationDemo {
     public static void main(String[] args) {
-        ObjA objA = new ObjA().setA1(2).setA2(90);
+        ObjA objA = new ObjA().setA1("set_value_a1");
 
         System.out.println(objA.toString());
 

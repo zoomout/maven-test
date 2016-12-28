@@ -4,37 +4,36 @@ package injectionOfValueByFieldAnnotation;
  * Created by zoomout on 12/27/16.
  */
 public class ObjC {
-    public int getIntV1() {
-        return intIntV1;
+    private Integer c1;
+
+    private String c2;
+
+    @SetDefault("c2")
+    public void c2() {
+        c2 = "default_c2";
     }
 
-    public ObjC setIntIntV1(int intIntV1) {
-        this.intIntV1 = intIntV1;
+    public Integer getC1() {
+        return c1;
+    }
+
+    public ObjC setC1(int c1) {
+        this.c1 = c1;
         return this;
     }
 
-    public int getIntIntV2() {
-        return intIntV2;
+    public String getC2() {
+        return c2;
     }
 
-    public ObjC setIntIntV2(int intIntV2) {
-        this.intIntV2 = intIntV2;
+    public ObjC setC2(String c2) {
+        this.c2 = c2;
         return this;
     }
-
-    private int intIntV1;
-
-    private int intIntV2;
-
-    @SetDefault("intIntV2")
-    public void setIntIntV2(){
-        intIntV2 = 7;
-    }
-
 
     @Override
     public String toString() {
-        return "ObjC{" + "intIntV1=" + intIntV1 + ", intIntV2=" + intIntV2 + '}';
+        return "ObjC{" + "c1=" + c1 + ", c2=" + c2 + '}';
     }
 
 }

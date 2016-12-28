@@ -5,40 +5,40 @@ package injectionOfValueByFieldAnnotation;
  */
 public class ObjA {
 
-    private int a1;
-    private int a2;
+    private String a1;
+    private Integer a2;
     private ObjB objB;
 
     @SetDefault("a1")
-    public void setDefaultA1(){
-        a1 = 5;
+    public void a1(){
+        a1 = "default_a1";
     }
 
     @SetDefault("a2")
-    public void setDefaultA2(){
-        a2 = 5;
+    public void a2(){
+        a2 = 2;
     }
 
     @SetDefault("objB")
-    public void setDefaultObjB(){
+    public void objB(){
         objB = new ObjB();
         Injector.setDefaults(objB);
     }
 
-    public int getA1() {
+    public String getA1() {
         return a1;
     }
 
-    public ObjA setA1(int a1) {
+    public ObjA setA1(String  a1) {
         this.a1 = a1;
         return this;
     }
 
-    public int getA2() {
+    public Integer getA2() {
         return a2;
     }
 
-    public ObjA setA2(int a2) {
+    public ObjA setA2(Integer a2) {
         this.a2 = a2;
         return this;
     }
