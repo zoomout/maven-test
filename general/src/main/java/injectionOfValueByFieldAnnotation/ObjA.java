@@ -1,5 +1,8 @@
 package injectionOfValueByFieldAnnotation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by zoomout on 12/27/16.
  */
@@ -7,7 +10,7 @@ public class ObjA {
 
     private String a1;
     private Integer a2;
-    private ObjB objB;
+    private List<ObjB> objBList;
 
     @SetDefault("a1")
     public void a1(){
@@ -19,10 +22,12 @@ public class ObjA {
         a2 = 2;
     }
 
-    @SetDefault("objB")
-    public void objB(){
-        objB = new ObjB();
+    @SetDefault("objBList")
+    public void objBList(){
+        objBList = new ArrayList<>();
+        ObjB objB = new ObjB();
         Injector.setDefaults(objB);
+        objBList.add(objB);
     }
 
     public String getA1() {
@@ -43,17 +48,17 @@ public class ObjA {
         return this;
     }
 
-    public ObjB getObjB() {
-        return objB;
+    public List<ObjB> getObjBList() {
+        return objBList;
     }
 
-    public ObjA setObjB(ObjB objB) {
-        this.objB = objB;
+    public ObjA setObjBList(List<ObjB> objBList) {
+        this.objBList = objBList;
         return this;
     }
 
     @Override
     public String toString() {
-        return "ObjA{" + "a1=" + a1 + ", a2=" + a2 + ", objB=" + objB + '}';
+        return "ObjA{" + "a1=" + a1 + ", a2=" + a2 + ", objBList=" + objBList + '}';
     }
 }
