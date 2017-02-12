@@ -22,7 +22,7 @@ public class SortingApp {
         Random random = new Random();
         int[] arr = new int[size];
         for (int index = 0; index < size; index++) {
-            arr[index] = random.nextInt(size);
+            arr[index] = random.nextInt(size) + 1000;
         }
         return arr;
     }
