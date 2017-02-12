@@ -26,4 +26,13 @@ public class SortingApp {
         }
         return arr;
     }
+
+    static void notifyIfNotSorted(int[] aux) {
+        for (int i = 0; i < aux.length - 1; i++) {
+            if (aux[i] > aux[i + 1]) {
+                System.out.println("Not sorted");
+                break;
+            }
+        }
+    }
 }

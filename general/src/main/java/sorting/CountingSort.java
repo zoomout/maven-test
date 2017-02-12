@@ -1,5 +1,7 @@
 package sorting;
 
+import static sorting.SortingApp.notifyIfNotSorted;
+
 public class CountingSort {
     public static long countingSort(int[] arr) {
         long start = System.currentTimeMillis();
@@ -24,14 +26,14 @@ public class CountingSort {
         int[] counts = new int[max - min + 1];
 
         // init the frequencies
-        for (int i = 0;  i < arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             counts[arr[i] - min]++;
         }
 
         // recalculate the array - create the array of occurences
         counts[0]--;
         for (int i = 1; i < counts.length; i++) {
-            counts[i] = counts[i] + counts[i-1];
+            counts[i] = counts[i] + counts[i - 1];
         }
 
     /*
@@ -46,8 +48,13 @@ public class CountingSort {
             aux[counts[arr[i] - min]--] = arr[i];
         }
 
+
+        /* Return time spent for sorting (and notify if not sorted) */
         long finish = System.currentTimeMillis();
+
+        notifyIfNotSorted(aux);
 
         return finish - start;
     }
+
 }
